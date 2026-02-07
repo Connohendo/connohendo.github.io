@@ -1,0 +1,15 @@
+{
+  "name": "resume-webapp",
+  "version": "1.0.0",
+  "description": "Printstream aesthetic resume webapp",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "start": "node server/index.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

@@ -1,0 +1,425 @@
+/* ═══════════════════════════════════════════════════════
+   VULCAN THEME — Global Styles, Variables & Animations
+   Inspired by the AK-47 | Vulcan from CS2
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* ── Theme Variables ────────────────────────────────── */
+
+:root {
+  /* Vulcan Light — clean blueprint */
+  --bg-primary: #f0f3f8;
+  --bg-secondary: #e2e7f0;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f6f8fc;
+  --text-primary: #0c1222;
+  --text-secondary: #384860;
+  --text-muted: #6a7d96;
+  --accent: #1976d2;
+  --accent-rgb: 25, 118, 210;
+  --accent-glow: rgba(25, 118, 210, 0.2);
+  --accent-secondary: #e65100;
+  --accent-secondary-rgb: 230, 81, 0;
+  --highlight: #2962ff;
+  --border: #c8d2e0;
+  --border-active: #1976d2;
+  --nav-bg: rgba(240, 243, 248, 0.88);
+  --tag-bg: rgba(25, 118, 210, 0.08);
+  --tag-text: #1565c0;
+  --tag-border: rgba(25, 118, 210, 0.25);
+  --input-bg: #ffffff;
+  --grid-color: rgba(12, 18, 34, 0.035);
+  --grid-accent: rgba(25, 118, 210, 0.04);
+  --scrollbar-track: #e2e7f0;
+  --scrollbar-thumb: #1976d2;
+  --shadow: 0 4px 20px rgba(12, 18, 34, 0.07);
+  --card-glow: 0 0 0 transparent;
+  --scanline-color: rgba(0, 0, 0, 0.008);
+  --timeline-line: #c8d2e0;
+  --timeline-dot: #1976d2;
+  --timeline-dot-glow: rgba(25, 118, 210, 0.35);
+  --transition-speed: 0.35s;
+}
+
+[data-theme='dark'] {
+  /* Vulcan Dark — the real Vulcan */
+  --bg-primary: #0b1121;
+  --bg-secondary: #111a2e;
+  --bg-card: #152035;
+  --bg-card-hover: #1b2a45;
+  --text-primary: #e2e8f4;
+  --text-secondary: #8a9dba;
+  --text-muted: #4a6282;
+  --accent: #4fc3f7;
+  --accent-rgb: 79, 195, 247;
+  --accent-glow: rgba(79, 195, 247, 0.15);
+  --accent-secondary: #ff7043;
+  --accent-secondary-rgb: 255, 112, 67;
+  --highlight: #448aff;
+  --border: #1e3050;
+  --border-active: #4fc3f7;
+  --nav-bg: rgba(11, 17, 33, 0.88);
+  --tag-bg: rgba(79, 195, 247, 0.07);
+  --tag-text: #4fc3f7;
+  --tag-border: rgba(79, 195, 247, 0.2);
+  --input-bg: #0f1829;
+  --grid-color: rgba(79, 195, 247, 0.018);
+  --grid-accent: rgba(79, 195, 247, 0.03);
+  --scrollbar-track: #0b1121;
+  --scrollbar-thumb: #4fc3f7;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --card-glow: 0 0 25px rgba(79, 195, 247, 0.06);
+  --scanline-color: rgba(79, 195, 247, 0.008);
+  --timeline-line: #1e3050;
+  --timeline-dot: #4fc3f7;
+  --timeline-dot-glow: rgba(79, 195, 247, 0.4);
+  --transition-speed: 0.35s;
+}
+
+/* ── Reset ──────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: 'Space Mono', 'Courier New', Courier, monospace;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.75;
+  transition: background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* ── Background Grid (Vulcan geometric pattern) ─────── */
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(var(--grid-accent) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-accent) 1px, transparent 1px);
+  background-size:
+    60px 60px,
+    60px 60px,
+    300px 300px,
+    300px 300px;
+}
+
+/* ── Scanline Overlay (subtle) ──────────────────────── */
+
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: repeating-linear-gradient(
+    0deg,
+    var(--scanline-color),
+    var(--scanline-color) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ── Scrollbar ──────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+/* ── Container ──────────────────────────────────────── */
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Section Base ───────────────────────────────────── */
+
+.section {
+  padding: 7rem 0 5rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.section-header {
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.section-title::before {
+  content: '>>> ';
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary), transparent);
+  margin-top: 0.5rem;
+}
+
+/* ── Terminal Line ──────────────────────────────────── */
+
+.terminal-line {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Prompt ─────────────────────────────────────────── */
+
+.prompt {
+  color: var(--accent);
+  user-select: none;
+}
+
+/* ── ASCII Separator ────────────────────────────────── */
+
+.ascii-separator {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 1.2rem 0;
+  user-select: none;
+  overflow: hidden;
+  letter-spacing: 0.05em;
+  opacity: 0.4;
+}
+
+/* ── Links ──────────────────────────────────────────── */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+/* ── Selection ──────────────────────────────────────── */
+
+::selection {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* ═══════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Scroll Reveal ──────────────────────────────────── */
+
+.sr {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.sr--up {
+  transform: translateY(var(--sr-distance, 30px));
+}
+
+.sr--down {
+  transform: translateY(calc(-1 * var(--sr-distance, 30px)));
+}
+
+.sr--left {
+  transform: translateX(calc(-1 * var(--sr-distance, 30px)));
+}
+
+.sr--right {
+  transform: translateX(var(--sr-distance, 30px));
+}
+
+.sr--visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ── Blinking Cursor ────────────────────────────────── */
+
+@keyframes blink-caret {
+  from, to { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.15em;
+  background-color: var(--accent);
+  animation: blink-caret 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 3px;
+}
+
+/* ── Glitch Effect ──────────────────────────────────── */
+
+@keyframes glitch {
+  0%, 92%, 100% {
+    transform: translate(0);
+    text-shadow: none;
+  }
+  93% {
+    transform: translate(-3px, 1px);
+    text-shadow:
+      3px 0 var(--accent),
+      -3px 0 var(--accent-secondary);
+  }
+  94% {
+    transform: translate(3px, -2px);
+    text-shadow:
+      -2px 0 var(--accent),
+      2px 0 var(--accent-secondary);
+  }
+  95% {
+    transform: translate(-1px, 2px);
+    text-shadow:
+      2px 0 var(--accent-secondary),
+      -2px 0 var(--accent);
+  }
+  96% {
+    transform: translate(2px, -1px);
+    text-shadow:
+      -3px 0 var(--accent),
+      3px 0 var(--accent-secondary);
+  }
+  97% {
+    transform: translate(0);
+    text-shadow: none;
+  }
+}
+
+.glitch {
+  animation: glitch 6s infinite;
+  position: relative;
+}
+
+/* ── Pulse Glow ─────────────────────────────────────── */
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--timeline-dot-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+
+/* ── Gradient Border Shimmer ────────────────────────── */
+
+@keyframes border-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Float ──────────────────────────────────────────── */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ── Slide in line ──────────────────────────────────── */
+
+@keyframes line-expand {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ── Fade in scale ──────────────────────────────────── */
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in-scale {
+  animation: fade-in-scale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .section {
+    padding: 5rem 0 3rem;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+}
