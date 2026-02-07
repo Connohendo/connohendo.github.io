@@ -3,7 +3,7 @@ import ThemeToggle from './ThemeToggle';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'home' },
-  { id: 'work', label: 'work' },
+  { id: 'work', label: 'timeline' },
   { id: 'projects', label: 'projects' },
   { id: 'contact', label: 'contact' },
 ];
