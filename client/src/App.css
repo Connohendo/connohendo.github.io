@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    VULCAN THEME — Component Styles
-   AK-47 | Vulcan inspired: navy, cobalt, cyan, orange
+   AK-47 | Vulcan: charcoal, silver/white, ice blue
    ═══════════════════════════════════════════════════════ */
 
 /* ── Navbar ─────────────────────────────────────────── */
@@ -45,7 +45,7 @@
 }
 
 .navbar__logo .prompt {
-  color: var(--accent-secondary);
+  color: var(--accent);
 }
 
 .navbar__links {
@@ -71,7 +71,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  background: linear-gradient(90deg, var(--accent), var(--silver));
   transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -160,7 +160,7 @@
   overflow: hidden;
   white-space: nowrap;
   letter-spacing: 0;
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
 .home__name {
@@ -187,7 +187,7 @@
   white-space: nowrap;
   margin-bottom: 1.5rem;
   letter-spacing: 0;
-  opacity: 0.3;
+  opacity: 0.25;
 }
 
 .home__summary {
@@ -217,9 +217,10 @@
   border: 1px solid var(--border);
   background: var(--bg-card);
   position: relative;
+  overflow: hidden;
 }
 
-/* Vulcan corner accents on skills grid */
+/* Vulcan corner accents */
 .home__skills-grid::before {
   content: '';
   position: absolute;
@@ -240,11 +241,28 @@
   background: var(--accent);
 }
 
+/* Diagonal hash overlay on skills box */
+.home__skills-grid-stripes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    var(--stripe-color) 8px,
+    var(--stripe-color) 9px
+  );
+  opacity: 0.6;
+}
+
 .home__skill-row {
   font-size: 0.8rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem;
+  position: relative;
+  z-index: 1;
 }
 
 .home__skill-category {
@@ -300,7 +318,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.08), transparent);
   transition: left 0.5s ease;
 }
 
@@ -332,8 +350,8 @@
   background: linear-gradient(
     180deg,
     var(--accent),
-    var(--timeline-line) 15%,
-    var(--timeline-line) 85%,
+    var(--timeline-line) 10%,
+    var(--timeline-line) 90%,
     var(--accent)
   );
 }
@@ -398,6 +416,7 @@
   background: var(--bg-card);
   padding: 1.5rem;
   position: relative;
+  overflow: hidden;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
@@ -415,7 +434,7 @@
   left: 0;
   width: 25px;
   height: 2px;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, width 0.3s ease;
 }
 
 .timeline__card::after {
@@ -425,7 +444,15 @@
   left: 0;
   width: 2px;
   height: 25px;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, height 0.3s ease;
+}
+
+.timeline__card:hover::before {
+  width: 45px;
+}
+
+.timeline__card:hover::after {
+  height: 45px;
 }
 
 .timeline__card--work::before,
@@ -443,9 +470,29 @@
   background: var(--highlight);
 }
 
-/* Bottom-right corner accent */
+/* Diagonal stripe accent inside cards */
+.timeline__card-stripes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    var(--stripe-color) 4px,
+    var(--stripe-color) 5px
+  );
+  opacity: 0.7;
+  mask-image: linear-gradient(90deg, transparent, rgba(0,0,0,0.4));
+  -webkit-mask-image: linear-gradient(90deg, transparent, rgba(0,0,0,0.4));
+}
+
 .timeline__card-inner {
   position: relative;
+  z-index: 1;
 }
 
 .timeline__type-badge {
@@ -462,19 +509,19 @@
 .timeline__type-badge--work {
   color: var(--accent);
   border-color: var(--accent);
-  background: rgba(var(--accent-rgb), 0.08);
+  background: rgba(var(--accent-rgb), 0.06);
 }
 
 .timeline__type-badge--education {
   color: var(--accent-secondary);
   border-color: var(--accent-secondary);
-  background: rgba(var(--accent-secondary-rgb), 0.08);
+  background: rgba(var(--accent-secondary-rgb), 0.06);
 }
 
 .timeline__type-badge--certification {
   color: var(--highlight);
   border-color: var(--highlight);
-  background: rgba(68, 138, 255, 0.08);
+  background: rgba(125, 212, 240, 0.06);
 }
 
 .timeline__entry-title {
@@ -564,11 +611,12 @@
   padding: 1.5rem;
   background: var(--bg-card);
   position: relative;
+  overflow: hidden;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease,
     transform 0.3s ease;
 }
 
-/* Vulcan corner accents on project cards */
+/* Vulcan corner accents */
 .projects__card::before {
   content: '';
   position: absolute;
@@ -591,6 +639,26 @@
   transition: height 0.3s ease;
 }
 
+/* Diagonal stripe accent on project cards */
+.projects__card-stripes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    var(--stripe-color) 4px,
+    var(--stripe-color) 5px
+  );
+  opacity: 0.7;
+  mask-image: linear-gradient(90deg, transparent, rgba(0,0,0,0.3));
+  -webkit-mask-image: linear-gradient(90deg, transparent, rgba(0,0,0,0.3));
+}
+
 .projects__card:hover {
   border-color: var(--border-active);
   box-shadow: var(--card-glow);
@@ -611,6 +679,8 @@
   align-items: baseline;
   gap: 0.7rem;
   margin-bottom: 0.8rem;
+  position: relative;
+  z-index: 1;
 }
 
 .projects__card-index {
@@ -630,6 +700,8 @@
   color: var(--text-secondary);
   line-height: 1.75;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .projects__card-tech {
@@ -637,6 +709,8 @@
   flex-wrap: wrap;
   gap: 0.4rem;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .projects__tech-tag {
@@ -659,6 +733,8 @@
 .projects__card-links {
   display: flex;
   gap: 0.8rem;
+  position: relative;
+  z-index: 1;
 }
 
 .projects__link {
@@ -670,7 +746,7 @@
 }
 
 .projects__link:hover {
-  color: var(--accent-secondary);
+  color: var(--highlight);
 }
 
 .projects__link--muted {
@@ -706,7 +782,7 @@
   user-select: none;
   line-height: 1.4;
   letter-spacing: 0;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .contact__text {
@@ -804,7 +880,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.12), transparent);
   transition: left 0.5s ease;
 }
 
@@ -831,15 +907,15 @@
 }
 
 .contact__status--success {
-  color: #00e676;
-  border-color: #00e676;
-  background: rgba(0, 230, 118, 0.06);
+  color: #4dd0a0;
+  border-color: #4dd0a0;
+  background: rgba(77, 208, 160, 0.06);
 }
 
 .contact__status--error {
-  color: var(--accent-secondary);
-  border-color: var(--accent-secondary);
-  background: rgba(var(--accent-secondary-rgb), 0.06);
+  color: #f06070;
+  border-color: #f06070;
+  background: rgba(240, 96, 112, 0.06);
 }
 
 /* ── Footer ─────────────────────────────────────────── */
@@ -854,9 +930,9 @@
 .footer__divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-secondary), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent), var(--silver), transparent);
   margin-bottom: 2rem;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .footer__text {

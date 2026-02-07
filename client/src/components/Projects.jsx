@@ -47,6 +47,7 @@ function Projects() {
           {PROJECTS.map((project, index) => (
             <ScrollReveal key={project.id} delay={index * 150}>
               <div className="projects__card">
+                <div className="projects__card-stripes"></div>
                 <div className="projects__card-header">
                   <span className="projects__card-index">
                     [{String(index).padStart(2, '0')}]

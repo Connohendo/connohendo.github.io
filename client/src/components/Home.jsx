@@ -75,6 +75,7 @@ function Home() {
                 <span className="prompt">$</span> cat tech_stack.conf
               </div>
               <div className="home__skills-grid">
+                <div className="home__skills-grid-stripes"></div>
                 {SKILLS.map((skill) => (
                   <div key={skill.category} className="home__skill-row">
                     <span className="home__skill-category">

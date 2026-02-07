@@ -1,31 +1,16 @@
 import ScrollReveal from './ScrollReveal';
 
+/* Newest → oldest */
 const TIMELINE_ENTRIES = [
   {
-    id: 1,
-    type: 'education',
-    title: 'Bachelor of Science in Computer Science',
-    organization: 'Bridgewater State University',
-    period: '2019 — 2023',
+    id: 4,
+    type: 'certification',
+    title: 'DevOps Foundations: Infrastructure as Code',
+    organization: 'LinkedIn Learning',
+    period: 'Dec 2025',
     current: false,
     description: [],
-    tech: [],
-  },
-  {
-    id: 2,
-    type: 'work',
-    title: 'DevSecOps Engineer',
-    organization: 'General Dynamics Mission Systems',
-    period: 'May 2022 — May 2023',
-    current: false,
-    description: [
-      'Maintained and hardened containerized applications for security compliance',
-      'Created automated CI/CD pipelines for Kubernetes clusters with ISTIO routing',
-      'Implemented Prometheus-based alerting for real-time failure detection',
-      'Automated vulnerability data collection via Prisma API integrations',
-      'Participated in incident response rotations improving system resilience',
-    ],
-    tech: ['Kubernetes', 'Docker', 'Prometheus', 'ISTIO', 'CI/CD', 'Prisma'],
+    tech: ['DevOps', 'Infrastructure as Code'],
   },
   {
     id: 3,
@@ -45,14 +30,30 @@ const TIMELINE_ENTRIES = [
     tech: ['AWS', 'Azure', 'Python', 'Redshift', 'Lambda', 'ElasticSearch', 'CI/CD'],
   },
   {
-    id: 4,
-    type: 'certification',
-    title: 'DevOps Foundations: Infrastructure as Code',
-    organization: 'LinkedIn Learning',
-    period: 'Dec 2025',
+    id: 2,
+    type: 'work',
+    title: 'DevSecOps Engineer',
+    organization: 'General Dynamics Mission Systems',
+    period: 'May 2022 — May 2023',
+    current: false,
+    description: [
+      'Maintained and hardened containerized applications for security compliance',
+      'Created automated CI/CD pipelines for Kubernetes clusters with ISTIO routing',
+      'Implemented Prometheus-based alerting for real-time failure detection',
+      'Automated vulnerability data collection via Prisma API integrations',
+      'Participated in incident response rotations improving system resilience',
+    ],
+    tech: ['Kubernetes', 'Docker', 'Prometheus', 'ISTIO', 'CI/CD', 'Prisma'],
+  },
+  {
+    id: 1,
+    type: 'education',
+    title: 'Bachelor of Science in Computer Science',
+    organization: 'Bridgewater State University',
+    period: '2019 — 2023',
     current: false,
     description: [],
-    tech: ['DevOps', 'Infrastructure as Code'],
+    tech: [],
   },
 ];
 
@@ -80,6 +81,7 @@ function Timeline() {
                 />
 
                 <div className={`timeline__card timeline__card--${entry.type}`}>
+                  <div className="timeline__card-stripes"></div>
                   <div className="timeline__card-inner">
                     <span className={`timeline__type-badge timeline__type-badge--${entry.type}`}>
                       {entry.type}
