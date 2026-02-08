@@ -1,14 +1,6 @@
 import { useState, useEffect } from 'react';
 import ScrollReveal from './ScrollReveal';
-
-const SKILLS = [
-  { category: 'Cloud Platforms', items: 'AWS, Microsoft Azure' },
-  { category: 'Infra & Automation', items: 'Terraform, Kubernetes, Docker, CI/CD' },
-  { category: 'Languages', items: 'Python, Java, Golang, SQL' },
-  { category: 'Observability', items: 'Prometheus, Grafana' },
-  { category: 'Databases', items: 'ElasticSearch, Redshift, Azure SQL' },
-  { category: 'DevOps Tools', items: 'Git, Linux, GitHub Actions, Jenkins' },
-];
+import SkillBars from './SkillBars';
 
 function Home() {
   const fullName = 'Connor Henderson';
@@ -28,6 +20,10 @@ function Home() {
     }, 80);
     return () => clearInterval(timer);
   }, []);
+
+  const handleDownload = () => {
+    window.print();
+  };
 
   return (
     <section id="home" className="section home">
@@ -74,17 +70,7 @@ function Home() {
               <div className="terminal-line">
                 <span className="prompt">$</span> cat tech_stack.conf
               </div>
-              <div className="home__skills-grid">
-                <div className="home__skills-grid-stripes"></div>
-                {SKILLS.map((skill) => (
-                  <div key={skill.category} className="home__skill-row">
-                    <span className="home__skill-category">
-                      <span className="prompt">&gt;</span> {skill.category}:
-                    </span>
-                    <span className="home__skill-items">{skill.items}</span>
-                  </div>
-                ))}
-              </div>
+              <SkillBars />
             </div>
           </ScrollReveal>
 
@@ -117,6 +103,9 @@ function Home() {
               <a href="#contact" className="home__cta-link">
                 [ CONTACT_ME ]
               </a>
+              <button className="home__cta-link home__cta-link--download" onClick={handleDownload}>
+                [ DOWNLOAD_PDF ]
+              </button>
             </div>
           </ScrollReveal>
         </div>

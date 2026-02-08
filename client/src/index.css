@@ -416,3 +416,182 @@ a:hover {
     padding: 0 1rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════
+   PRINT STYLES — PDF Export
+   ═══════════════════════════════════════════════════════ */
+
+@media print {
+  /* Hide non-content elements */
+  .bg-grid,
+  .scanline-overlay,
+  .navbar,
+  .footer,
+  .terminal-overlay,
+  .home__cta,
+  .home__ascii-top,
+  .home__ascii-bottom,
+  .home__divider,
+  .projects__card-stripes,
+  .timeline__card-stripes,
+  .home__skills-grid-stripes,
+  .github-stats__repo-card-stripes,
+  .github-stats,
+  .skill-bar__stripes,
+  .cursor {
+    display: none !important;
+  }
+
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  html {
+    font-size: 11pt;
+  }
+
+  body {
+    background: white !important;
+    color: #111 !important;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 0.5in;
+  }
+
+  .section {
+    min-height: auto !important;
+    padding: 0.5rem 0 !important;
+    page-break-inside: avoid;
+    display: block;
+  }
+
+  .home {
+    padding-top: 0.5rem !important;
+  }
+
+  .home__name {
+    font-size: 22pt !important;
+    color: #111 !important;
+  }
+
+  .home__role {
+    color: #333 !important;
+    font-size: 10pt;
+  }
+
+  .section-title {
+    font-size: 13pt;
+    color: #111 !important;
+  }
+
+  .section-title::before {
+    display: none;
+  }
+
+  .section-title::after {
+    background: #111 !important;
+  }
+
+  .prompt {
+    color: #666 !important;
+  }
+
+  .terminal-line {
+    display: none;
+  }
+
+  /* Skill bars print as simple text */
+  .skill-bar__track {
+    border-color: #ccc !important;
+    background: #f5f5f5 !important;
+  }
+
+  .skill-bar__fill {
+    background: #333 !important;
+    width: var(--skill-level) !important;
+  }
+
+  /* Timeline print */
+  .timeline__track {
+    padding-left: 1rem;
+  }
+
+  .timeline__track::before {
+    display: none;
+  }
+
+  .timeline__dot {
+    display: none;
+  }
+
+  .timeline__card {
+    border: 1px solid #ddd !important;
+    background: white !important;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline__card::before,
+  .timeline__card::after {
+    display: none;
+  }
+
+  .timeline__type-badge {
+    color: #333 !important;
+    border-color: #999 !important;
+    background: #f0f0f0 !important;
+  }
+
+  /* Projects print */
+  .projects__grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem;
+  }
+
+  .projects__card {
+    border: 1px solid #ddd !important;
+    background: white !important;
+    padding: 0.8rem;
+  }
+
+  .projects__card::before,
+  .projects__card::after {
+    display: none;
+  }
+
+  /* Tags */
+  .timeline__tech-tag,
+  .projects__tech-tag {
+    border-color: #999 !important;
+    color: #333 !important;
+    background: #f0f0f0 !important;
+  }
+
+  /* Contact */
+  .contact__wrapper {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact__form {
+    display: none;
+  }
+
+  .contact__ascii {
+    display: none;
+  }
+
+  /* Scroll reveal — show everything */
+  .sr {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  a {
+    color: #111 !important;
+    text-decoration: underline;
+  }
+}

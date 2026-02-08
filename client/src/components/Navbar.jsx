@@ -5,10 +5,11 @@ const NAV_ITEMS = [
   { id: 'home', label: 'home' },
   { id: 'work', label: 'timeline' },
   { id: 'projects', label: 'projects' },
+  { id: 'github', label: 'github' },
   { id: 'contact', label: 'contact' },
 ];
 
-function Navbar() {
+function Navbar({ onToggleTerminal }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -30,6 +31,18 @@ function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Keyboard shortcut for terminal: Ctrl + `
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.ctrlKey && e.key === '`') {
+        e.preventDefault();
+        onToggleTerminal();
+      }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [onToggleTerminal]);
 
   const handleNavClick = () => {
     setMobileOpen(false);
@@ -63,6 +76,16 @@ function Navbar() {
               /{label}
             </a>
           ))}
+
+          <button
+            className="navbar__terminal-btn"
+            onClick={onToggleTerminal}
+            aria-label="Toggle terminal"
+            title="Open terminal (Ctrl + `)"
+          >
+            &gt;_
+          </button>
+
           <ThemeToggle />
         </div>
       </div>
