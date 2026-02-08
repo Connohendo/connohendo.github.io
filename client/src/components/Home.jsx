@@ -107,7 +107,7 @@ function Home() {
                 [ CONTACT_ME ]
               </a>
               <button className="home__cta-link home__cta-link--download" onClick={handleDownload}>
-                [ DOWNLOAD_RESUME ]
+                [ GET_RESUME ]
               </button>
             </div>
           </ScrollReveal>
