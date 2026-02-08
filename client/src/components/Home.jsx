@@ -22,7 +22,10 @@ function Home() {
   }, []);
 
   const handleDownload = () => {
-    window.print();
+    const link = document.createElement('a');
+    link.href = '/Connor_Henderson_Resume.pdf';
+    link.download = 'Connor_Henderson_Resume.pdf';
+    link.click();
   };
 
   return (
@@ -104,7 +107,7 @@ function Home() {
                 [ CONTACT_ME ]
               </a>
               <button className="home__cta-link home__cta-link--download" onClick={handleDownload}>
-                [ DOWNLOAD_PDF ]
+                [ DOWNLOAD_RESUME ]
               </button>
             </div>
           </ScrollReveal>

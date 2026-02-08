@@ -117,8 +117,13 @@ function buildCommands(toggleTheme) {
     ],
 
     resume: () => {
-      setTimeout(() => window.print(), 300);
-      return ['Opening print dialog... Save as PDF to download.'];
+      setTimeout(() => {
+        const link = document.createElement('a');
+        link.href = '/Connor_Henderson_Resume.pdf';
+        link.download = 'Connor_Henderson_Resume.pdf';
+        link.click();
+      }, 300);
+      return ['Downloading Connor_Henderson_Resume.pdf...'];
     },
 
     goto: (args) => {
